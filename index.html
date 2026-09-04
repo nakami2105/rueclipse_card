@@ -1,3 +1,56 @@
-<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Recuerdos 💗</title><link rel="stylesheet" href="style.css"></head><body>
-<div id="transition"></div><div id="sakura-container"></div><div id="particles"></div>
-<section class="gallery-page"><h1>🌸 Nuestros recuerdos 🌸</h1><p class="gallery-message">Cada fotografía guarda un momento especial que siempre recordaré contigo ❤️</p><div class="gallery"><img src="fotos/foto1.jpg"><img src="fotos/foto2.jpg"><img src="fotos/foto3.jpg"><img src="fotos/foto4.jpg"><img src="fotos/foto5.jpg"><img src="fotos/foto6.jpg"></div><h2 class="final-memory">Nuestros recuerdos ❤️</h2><a class="btn page-link" href="carta.html">Abrir carta 💌</a></section><div id="lightbox"><button id="prev">‹</button><img><button id="next">›</button></div><script src="script.js"></script><script src="sakura.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para ti 💖</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="sakura-container"></div>
+
+    <!-- PASO 1: Sobre de la carta -->
+    <div id="envelope" onclick="openEnvelope()">
+        <div class="flap"></div>
+        <div class="seal">💛</div>
+        <p>Para ti 💖</p>
+    </div>
+
+    <!-- PASO 2: Galería de fotos (Oculta al inicio) -->
+    <section id="gallery-section" class="hidden">
+        <h2>Nuestros Recuerdos 🌸</h2>
+        <div class="gallery">
+            <img src="fotos/foto1.jpg" alt="Foto 1">
+            <img src="fotos/foto2.jpg" alt="Foto 2">
+            <img src="fotos/foto3.jpg" alt="Foto 3">
+            <img src="fotos/foto4.jpg" alt="Foto 4">
+            <img src="fotos/foto5.jpg" alt="Foto 5">
+            <img src="fotos/foto6.jpg" alt="Foto 6">
+        </div>
+        <button class="btn" onclick="showLetterText()">Leer Carta 💌</button>
+    </section>
+
+    <!-- PASO 3: Texto de la carta (Oculto al inicio) -->
+    <main id="letter" class="hidden">
+        <h1 id="typed"></h1>
+        <p>Escribe aquí tu carta de amor...</p>
+    </main>
+
+    <!-- Reproductor de Spotify -->
+    <div id="spotify">
+        <iframe 
+            style="border-radius:12px" 
+            src="https://open.spotify.com/embed/track/5r5sF35TZ66zMyPfgMn8wj?utm_source=generator" 
+            width="100%" 
+            height="152" 
+            frameBorder="0" 
+            allowfullscreen="" 
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+            loading="lazy">
+        </iframe>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="sakura.js"></script>
+</body>
+</html>
