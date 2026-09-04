@@ -1,55 +1,44 @@
-// Paso 1 -> Paso 2 (Abrir sobre)
-function openEnvelope() {
-    const envelope = document.getElementById('envelope');
-    const gallerySection = document.getElementById('gallery-section');
+document.addEventListener('DOMContentLoaded', () => {
+    // Definimos las dos clases de partículas que van a caer
+    const elements = ['🌸', '✨', '🌸', '💖'];
+    const totalParticles = window.innerWidth < 600 ? 18 : 35; // Menos en celular para evitar sobrecarga
 
-    envelope.classList.add('open');
+    function createParticle() {
+        const particle = document.createElement('div');
+        particle.className = 'sakura-particle';
+        
+        // Elección aleatoria entre pétalos y destellos
+        const symbol = elements[Math.floor(Math.random() * elements.length)];
+        particle.innerHTML = symbol;
 
-    setTimeout(() => {
-        envelope.classList.add('hidden');
-        gallerySection.classList.remove('hidden');
-    }, 1000);
-}
+        // Posición horizontal de inicio aleatoria
+        const startLeft = Math.random() * 100;
+        
+        // Tamaños aleatorios
+        const size = Math.random() * 12 + 12; // Entre 12px y 24px
+        
+        // Duración de la caída y retraso de inicio aleatorios
+        const duration = Math.random() * 5 + 6; // Entre 6s y 11s
+        const delay = Math.random() * 5;
 
-// Ir a la Galería (Paso 2)
-function showGallery() {
-    document.getElementById('envelope').classList.add('hidden');
-    document.getElementById('letter').classList.add('hidden');
-    document.getElementById('gallery-section').classList.remove('hidden');
-}
+        // Aplicamos estilos directamente a cada partícula
+        Object.assign(particle.style, {
+            position: 'fixed',
+            top: '-30px',
+            left: `${startLeft}vw`,
+            fontSize: `${size}px`,
+            opacity: Math.random() * 0.7 + 0.3,
+            pointerEvents: 'none',
+            zIndex: '9999',
+            userSelect: 'none',
+            animation: `sakuraFall ${duration}s linear ${delay}s infinite`
+        });
 
-// Ir a la Carta / Texto (Paso 3)
-function showLetterText() {
-    document.getElementById('gallery-section').classList.add('hidden');
-    document.getElementById('letter').classList.remove('hidden');
-}
-
-// Volver al Sobre inicial (Paso 1)
-function showEnvelope() {
-    const envelope = document.getElementById('envelope');
-    envelope.classList.remove('open');
-    envelope.classList.remove('hidden');
-    
-    document.getElementById('gallery-section').classList.add('hidden');
-    document.getElementById('letter').classList.add('hidden');
-}
-// Abrir imagen en lightbox
-function openLightbox(src) {
-    const lightbox = document.getElementById('lightbox');
-    const lightImage = document.getElementById('lightImage');
-    
-    lightImage.src = src;
-    lightbox.classList.add('active');
-}
-
-// Cierre al hacer clic fuera de la imagen
-function closeLightbox(event) {
-    if (event.target.id === 'lightbox') {
-        document.getElementById('lightbox').classList.remove('active');
+        document.body.appendChild(particle);
     }
-}
 
-// Cierre forzado mediante el botón "X"
-function forceCloseLightbox() {
-    document.getElementById('lightbox').classList.remove('active');
-}
+    // Generamos las partículas iniciales
+    for (let i = 0; i < totalParticles; i++) {
+        createParticle();
+    }
+});
