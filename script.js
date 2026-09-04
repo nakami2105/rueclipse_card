@@ -1,15 +1,1 @@
-function openLetter(){
- const envelope=document.getElementById('envelope');
- const letter=document.getElementById('letter');
- if(!envelope)return;
- envelope.classList.add('opening');
- setTimeout(()=>{envelope.style.display='none';letter.classList.remove('hidden');letter.classList.add('showLetter');},900);
-}
-function showSpotify(){document.getElementById('spotify').innerHTML='PEGA AQUI TU IFRAME DE SPOTIFY';}
-document.addEventListener('DOMContentLoaded',()=>{
- document.querySelectorAll('.page-link').forEach(a=>a.addEventListener('click',e=>{
-  e.preventDefault();let url=a.href;document.getElementById('transition').classList.add('cover');setTimeout(()=>location.href=url,800);
- }));
- document.querySelectorAll('.gallery img').forEach(img=>img.onclick=()=>{let l=document.getElementById('lightbox');let i=document.getElementById('lightImage');i.src=img.src;l.classList.add('active');});
- let l=document.getElementById('lightbox');if(l)l.onclick=()=>l.classList.remove('active');
-});
+function openLetter(){let e=document.getElementById('envelope');if(!e)return;e.classList.add('open');setTimeout(()=>{e.style.display='none';let l=document.getElementById('letter');l.classList.remove('hidden');typeText('Mi carta para ti...');},1000)}function typeText(t){let el=document.getElementById('typed');if(!el)return;let i=0;let a=setInterval(()=>{el.textContent+=t[i++];if(i>=t.length)clearInterval(a)},100)}function showSpotify(){document.getElementById('spotify').innerHTML='PEGA AQUI TU IFRAME DE SPOTIFY'}document.addEventListener('click',e=>{let h=document.createElement('div');h.className='heart';h.textContent='💗';h.style.left=e.clientX+'px';h.style.top=e.clientY+'px';document.body.appendChild(h);setTimeout(()=>h.remove(),1000)});let imgs=[...document.querySelectorAll('.gallery img')],box=document.getElementById('lightbox'),current=0;if(box){imgs.forEach((im,i)=>im.onclick=()=>{current=i;box.style.display='flex';box.querySelector('img').src=im.src});document.getElementById('next').onclick=()=>{current=(current+1)%imgs.length;box.querySelector('img').src=imgs[current].src};document.getElementById('prev').onclick=()=>{current=(current-1+imgs.length)%imgs.length;box.querySelector('img').src=imgs[current].src}}
