@@ -1,2 +1,2 @@
 function openLetter(){document.getElementById('envelope').style.display='none';document.getElementById('letter').classList.remove('hidden');}
-function showSpotify(){document.getElementById('spotify').innerHTML='PEGA AQUI TU IFRAME DE SPOTIFY';}
+function showSpotify(){document.getElementById('spotify').innerHTML='<iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/5r5sF35TZ66zMyPfgMn8wj?utm_source=generator&si=16ff31b6af1b4721" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>';}
