@@ -1,24 +1,35 @@
-// Paso 1 -> Paso 2: Abrir el sobre y mostrar la galería
+// Paso 1 -> Paso 2 (Abrir sobre)
 function openEnvelope() {
     const envelope = document.getElementById('envelope');
     const gallerySection = document.getElementById('gallery-section');
 
     envelope.classList.add('open');
 
-    // Esperar a que la animación de apertura del sobre termine
     setTimeout(() => {
         envelope.classList.add('hidden');
         gallerySection.classList.remove('hidden');
     }, 1000);
 }
 
-// Paso 2 -> Paso 3: Ocultar la galería y mostrar el texto de la carta
+// Ir a la Galería (Paso 2)
+function showGallery() {
+    document.getElementById('envelope').classList.add('hidden');
+    document.getElementById('letter').classList.add('hidden');
+    document.getElementById('gallery-section').classList.remove('hidden');
+}
+
+// Ir a la Carta / Texto (Paso 3)
 function showLetterText() {
-    const gallerySection = document.getElementById('gallery-section');
-    const letter = document.getElementById('letter');
+    document.getElementById('gallery-section').classList.add('hidden');
+    document.getElementById('letter').classList.remove('hidden');
+}
 
-    gallerySection.classList.add('hidden');
-    letter.classList.remove('hidden');
-
-    // Si tienes alguna animación de escritura para el título/texto, la puedes iniciar aquí
+// Volver al Sobre inicial (Paso 1)
+function showEnvelope() {
+    const envelope = document.getElementById('envelope');
+    envelope.classList.remove('open');
+    envelope.classList.remove('hidden');
+    
+    document.getElementById('gallery-section').classList.add('hidden');
+    document.getElementById('letter').classList.add('hidden');
 }
