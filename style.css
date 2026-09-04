@@ -44,3 +44,49 @@
         text-shadow: 0 0 15px rgba(217, 147, 167, 0.8), 0 0 25px rgba(232, 169, 184, 0.6);
     }
 }
+/* --- ESTILOS DEL TÍTULO ANIMADO Y CARTA --- */
+.animated-title {
+    font-size: 26px;
+    color: #9b6070;
+    margin-bottom: 25px;
+    animation: glowFloat 3s ease-in-out infinite alternate;
+    text-shadow: 0 0 10px rgba(217, 147, 167, 0.4);
+}
+
+.letter-content {
+    text-align: justify;
+    line-height: 1.7;
+    color: #5c3d46;
+    font-size: 15px;
+    max-height: 60vh;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+/* Personalización de la barra de desplazamiento del texto */
+.letter-content::-webkit-scrollbar {
+    width: 6px;
+}
+.letter-content::-webkit-scrollbar-thumb {
+    background: #d993a7;
+    border-radius: 10px;
+}
+
+.signature {
+    text-align: right;
+    margin-top: 25px;
+    font-style: italic;
+    line-height: 1.5;
+}
+
+/* Animación del Título (Flotante con destello) */
+@keyframes glowFloat {
+    0% {
+        transform: translateY(0);
+        text-shadow: 0 0 5px rgba(217, 147, 167, 0.3);
+    }
+    100% {
+        transform: translateY(-6px);
+        text-shadow: 0 0 15px rgba(217, 147, 167, 0.8), 0 0 25px rgba(232, 169, 184, 0.6);
+    }
+}
