@@ -33,6 +33,16 @@ body {
 .sakura { position: fixed; top: -30px; animation: fall linear forwards; pointer-events: none; }
 .heart { position: fixed; animation: heart 1s forwards; }
 
+/* Estilo para el reproductor de Spotify */
+#spotify {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 320px;
+    max-width: 90vw;
+    z-index: 1000;
+}
+
 @keyframes fall { to { transform: translateY(110vh) rotate(720deg); } }
 @keyframes float { 50% { transform: translateY(-12px); } }
 @keyframes shine { 50% { filter: drop-shadow(0 0 15px #fff); } }
