@@ -9,45 +9,48 @@
 <body>
     <div id="sakura-container"></div>
 
-    <!-- PASO 1: Sobre de la carta -->
+    <!-- PASO 1: Sobre -->
     <div id="envelope" onclick="openEnvelope()">
         <div class="flap"></div>
         <div class="seal">💛</div>
         <p>Para ti 💖</p>
     </div>
 
-    <!-- PASO 2: Galería de fotos (Oculta al inicio) -->
+    <!-- PASO 2: Galería -->
     <section id="gallery-section" class="hidden">
         <h2>Nuestros Recuerdos 🌸</h2>
         <div class="gallery">
-            <img src="fotos/foto1.jpg" alt="Foto 1">
-            <img src="fotos/foto2.jpg" alt="Foto 2">
-            <img src="fotos/foto3.jpg" alt="Foto 3">
-            <img src="fotos/foto4.jpg" alt="Foto 4">
-            <img src="fotos/foto5.jpg" alt="Foto 5">
-            <img src="fotos/foto6.jpg" alt="Foto 6">
+            <img src="fotos/foto1.jpg" alt="Foto 1" onclick="openLightbox(this.src)">
+            <img src="fotos/foto2.jpg" alt="Foto 2" onclick="openLightbox(this.src)">
+            <img src="fotos/foto3.jpg" alt="Foto 3" onclick="openLightbox(this.src)">
+            <img src="fotos/foto4.jpg" alt="Foto 4" onclick="openLightbox(this.src)">
+            <img src="fotos/foto5.jpg" alt="Foto 5" onclick="openLightbox(this.src)">
+            <img src="fotos/foto6.jpg" alt="Foto 6" onclick="openLightbox(this.src)">
         </div>
         
-        <!-- Botones de navegación en la galería -->
         <div class="nav-buttons">
             <button class="btn secondary" onclick="showEnvelope()">← Volver al Sobre</button>
             <button class="btn" onclick="showLetterText()">Leer Carta 💌 →</button>
         </div>
     </section>
 
-    <!-- PASO 3: Texto de la carta (Oculto al inicio) -->
+    <!-- PASO 3: Carta -->
     <main id="letter" class="hidden">
         <h1 id="typed"></h1>
         <p>Escribe aquí tu carta de amor...</p>
-
-        <!-- Botones de navegación en la carta -->
         <div class="nav-buttons">
             <button class="btn secondary" onclick="showGallery()">← Volver a la Galería</button>
             <button class="btn" onclick="showEnvelope()">Inicio 🏠</button>
         </div>
     </main>
 
-    <!-- Reproductor de Spotify -->
+    <!-- LIGHTBOX PARA VER FOTOS EN GRANDE -->
+    <div id="lightbox" onclick="closeLightbox(event)">
+        <span class="close-btn" onclick="forceCloseLightbox()">&times;</span>
+        <img id="lightImage" src="" alt="Foto ampliada">
+    </div>
+
+    <!-- REPRODUCTOR DE SPOTIFY -->
     <div id="spotify">
         <iframe 
             style="border-radius:12px" 
