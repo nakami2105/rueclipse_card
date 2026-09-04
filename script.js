@@ -33,3 +33,23 @@ function showEnvelope() {
     document.getElementById('gallery-section').classList.add('hidden');
     document.getElementById('letter').classList.add('hidden');
 }
+// Abrir imagen en lightbox
+function openLightbox(src) {
+    const lightbox = document.getElementById('lightbox');
+    const lightImage = document.getElementById('lightImage');
+    
+    lightImage.src = src;
+    lightbox.classList.add('active');
+}
+
+// Cierre al hacer clic fuera de la imagen
+function closeLightbox(event) {
+    if (event.target.id === 'lightbox') {
+        document.getElementById('lightbox').classList.remove('active');
+    }
+}
+
+// Cierre forzado mediante el botón "X"
+function forceCloseLightbox() {
+    document.getElementById('lightbox').classList.remove('active');
+}
