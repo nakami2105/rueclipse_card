@@ -27,13 +27,24 @@
             <img src="fotos/foto5.jpg" alt="Foto 5">
             <img src="fotos/foto6.jpg" alt="Foto 6">
         </div>
-        <button class="btn" onclick="showLetterText()">Leer Carta 💌</button>
+        
+        <!-- Botones de navegación en la galería -->
+        <div class="nav-buttons">
+            <button class="btn secondary" onclick="showEnvelope()">← Volver al Sobre</button>
+            <button class="btn" onclick="showLetterText()">Leer Carta 💌 →</button>
+        </div>
     </section>
 
     <!-- PASO 3: Texto de la carta (Oculto al inicio) -->
     <main id="letter" class="hidden">
         <h1 id="typed"></h1>
         <p>Escribe aquí tu carta de amor...</p>
+
+        <!-- Botones de navegación en la carta -->
+        <div class="nav-buttons">
+            <button class="btn secondary" onclick="showGallery()">← Volver a la Galería</button>
+            <button class="btn" onclick="showEnvelope()">Inicio 🏠</button>
+        </div>
     </main>
 
     <!-- Reproductor de Spotify -->
