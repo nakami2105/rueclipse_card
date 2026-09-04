@@ -1,2 +1,15 @@
-function openLetter(){document.getElementById('envelope').style.display='none';document.getElementById('letter').classList.remove('hidden');}
-function showSpotify(){document.getElementById('spotify').innerHTML='<iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/5r5sF35TZ66zMyPfgMn8wj?utm_source=generator&si=16ff31b6af1b4721" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>';}
+function openLetter(){
+ const envelope=document.getElementById('envelope');
+ const letter=document.getElementById('letter');
+ if(!envelope)return;
+ envelope.classList.add('opening');
+ setTimeout(()=>{envelope.style.display='none';letter.classList.remove('hidden');letter.classList.add('showLetter');},900);
+}
+function showSpotify(){document.getElementById('spotify').innerHTML='PEGA AQUI TU IFRAME DE SPOTIFY';}
+document.addEventListener('DOMContentLoaded',()=>{
+ document.querySelectorAll('.page-link').forEach(a=>a.addEventListener('click',e=>{
+  e.preventDefault();let url=a.href;document.getElementById('transition').classList.add('cover');setTimeout(()=>location.href=url,800);
+ }));
+ document.querySelectorAll('.gallery img').forEach(img=>img.onclick=()=>{let l=document.getElementById('lightbox');let i=document.getElementById('lightImage');i.src=img.src;l.classList.add('active');});
+ let l=document.getElementById('lightbox');if(l)l.onclick=()=>l.classList.remove('active');
+});
