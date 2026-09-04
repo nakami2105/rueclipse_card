@@ -1,4 +1,8 @@
 /* --- ESTILOS GENERALES Y FONDO --- */
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     padding: 20px 10px;
@@ -15,15 +19,40 @@ body {
     flex-direction: column;
     color: #9b6070;
     overflow-x: hidden;
-    box-sizing: border-box;
 }
 
-/* Ocultar elementos */
 .hidden { 
     display: none !important; 
 }
 
-/* --- PASO 1: SOBRE --- */
+/* --- ANIMACIÓN DE PÉTALOS DE SAKURA --- */
+.sakura {
+    position: fixed;
+    top: -20px;
+    background: linear-gradient(135deg, #ffb7c5, #ff9ebb);
+    border-radius: 15px 0 15px 0;
+    opacity: 0.8;
+    pointer-events: none;
+    z-index: 100;
+    box-shadow: 0 2px 5px rgba(255, 183, 197, 0.5);
+    animation: sakuraFall linear forwards;
+}
+
+@keyframes sakuraFall {
+    0% {
+        transform: translateY(0) rotate(0deg) translateX(0);
+        opacity: 0.9;
+    }
+    50% {
+        transform: translateY(50vh) rotate(180deg) translateX(50px);
+    }
+    100% {
+        transform: translateY(105vh) rotate(360deg) translateX(-30px);
+        opacity: 0;
+    }
+}
+
+/* --- PASO 1: SOBRE MEJORADO Y ANIMADO --- */
 #envelope { 
     width: 300px; 
     height: 190px; 
@@ -36,35 +65,51 @@ body {
     position: relative; 
     animation: float 3s infinite ease-in-out; 
     margin: auto;
+    perspective: 1000px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#envelope:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 25px 45px rgba(217, 147, 167, 0.4);
 }
 
 .seal { 
-    font-size: 40px; 
-    padding-top: 70px; 
-    animation: shine 2s infinite; 
+    font-size: 42px; 
+    padding-top: 65px; 
+    animation: pulse 2s infinite ease-in-out; 
 }
 
 .flap { 
     position: absolute; 
+    top: 0;
+    left: 0;
     width: 0; 
     height: 0; 
     border-left: 150px solid transparent; 
     border-right: 150px solid transparent; 
     border-top: 100px solid #e8a9b8; 
     transform-origin: top; 
-    transition: 1s; 
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); 
+    z-index: 2;
 }
 
-.open .flap { 
+/* Efecto de apertura del sobre */
+#envelope.opening .flap { 
     transform: rotateX(180deg); 
 }
 
-/* --- PASO 2: GALERÍA --- */
+#envelope.opening {
+    animation: openFade 1s forwards;
+}
+
+/* --- PASO 2: GALERÍA CON ENTRADA ESCALONADA --- */
 #gallery-section {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
+    animation: fadeIn 0.8s ease-out;
 }
 
 .gallery { 
@@ -82,12 +127,21 @@ body {
     border-radius: 15px; 
     cursor: pointer; 
     box-shadow: 0 10px 20px rgba(0,0,0,0.2); 
-    transition: transform 0.2s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+    animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
 }
 
+.gallery img:nth-child(1) { animation-delay: 0.1s; }
+.gallery img:nth-child(2) { animation-delay: 0.2s; }
+.gallery img:nth-child(3) { animation-delay: 0.3s; }
+.gallery img:nth-child(4) { animation-delay: 0.4s; }
+.gallery img:nth-child(5) { animation-delay: 0.5s; }
+.gallery img:nth-child(6) { animation-delay: 0.6s; }
+
 .gallery img:hover { 
-    transform: scale(1.05) rotate(2deg); 
-    filter: brightness(1.1); 
+    transform: scale(1.08) rotate(2deg); 
+    filter: brightness(1.08); 
+    box-shadow: 0 15px 30px rgba(217, 147, 167, 0.5);
 }
 
 /* --- PASO 3: CARTA DE AMOR --- */
@@ -100,7 +154,6 @@ body {
     box-shadow: 0 15px 40px rgba(0,0,0,0.3); 
     text-align: center; 
     animation: paper 0.8s ease-out; 
-    box-sizing: border-box;
 }
 
 .animated-title {
@@ -121,13 +174,8 @@ body {
     padding-right: 10px;
 }
 
-.letter-content::-webkit-scrollbar {
-    width: 6px;
-}
-.letter-content::-webkit-scrollbar-thumb {
-    background: #d993a7;
-    border-radius: 10px;
-}
+.letter-content::-webkit-scrollbar { width: 6px; }
+.letter-content::-webkit-scrollbar-thumb { background: #d993a7; border-radius: 10px; }
 
 .signature {
     text-align: right;
@@ -150,29 +198,23 @@ body {
     color: white; 
     padding: 12px 22px; 
     border-radius: 30px; 
-    text-decoration: none; 
     border: none;
     cursor: pointer;
     font-family: inherit;
     font-size: 15px;
-    display: inline-block; 
-    transition: transform 0.2s ease, background 0.2s ease;
+    transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
 }
 
 .btn:hover { 
     transform: translateY(-3px); 
     background: #c77f93;
+    box-shadow: 0 8px 15px rgba(217, 147, 167, 0.4);
 }
 
-.btn.secondary {
-    background: #b5838d;
-}
+.btn.secondary { background: #b5838d; }
+.btn.secondary:hover { background: #a26b75; }
 
-.btn.secondary:hover {
-    background: #a26b75;
-}
-
-/* --- LIGHTBOX (VISOR DE FOTOS AMPLIO) --- */
+/* --- LIGHTBOX (VISOR AMPLIO) --- */
 #lightbox { 
     display: none; 
     position: fixed; 
@@ -185,6 +227,7 @@ body {
 
 #lightbox.active {
     display: flex;
+    animation: fadeIn 0.3s ease;
 }
 
 #lightbox img { 
@@ -192,6 +235,7 @@ body {
     max-height: 80vh; 
     border-radius: 12px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    animation: popIn 0.3s ease;
 }
 
 .close-btn {
@@ -202,7 +246,6 @@ body {
     color: #ffffff;
     cursor: pointer;
     font-weight: bold;
-    user-select: none;
     z-index: 2001;
 }
 
@@ -216,16 +259,18 @@ body {
     z-index: 1000;
 }
 
-/* --- ANIMACIONES --- */
+/* --- ANIMACIONES ADICIONALES --- */
 @keyframes float { 50% { transform: translateY(-12px); } }
-@keyframes shine { 50% { filter: drop-shadow(0 0 15px #fff); } }
-@keyframes paper { from { opacity: 0; transform: scale(.8); } to { opacity: 1; transform: scale(1); } }
+@keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.15); } }
+@keyframes openFade { to { opacity: 0; transform: scale(0.8) translateY(20px); } }
+@keyframes popIn { from { opacity: 0; transform: scale(0.7); } to { opacity: 1; transform: scale(1); } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes paper { from { opacity: 0; transform: translateY(20px) scale(0.95); } to { opacity: 1; transform: translateY(0) scale(1); } }
 @keyframes glowFloat {
     0% { transform: translateY(0); text-shadow: 0 0 5px rgba(217, 147, 167, 0.3); }
     100% { transform: translateY(-6px); text-shadow: 0 0 15px rgba(217, 147, 167, 0.8); }
 }
 
-/* --- VISTA MÓVIL --- */
 @media (max-width: 600px) { 
     .gallery { grid-template-columns: repeat(2, 1fr); gap: 10px; } 
     #spotify { position: relative; bottom: auto; right: auto; width: 100%; margin-top: 20px; }
