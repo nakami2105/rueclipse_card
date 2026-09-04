@@ -1,1 +1,43 @@
-body{margin:0;min-height:100vh;background:#f8dde4;font-family:Georgia,serif;display:flex;align-items:center;justify-content:center;flex-direction:column;color:#9b6070;overflow-x:hidden}#envelope{width:300px;height:190px;background:#d993a7;border-radius:15px;text-align:center;color:white;cursor:pointer;box-shadow:0 20px 40px #0003;position:relative;animation:float 3s infinite}.seal{font-size:40px;padding-top:70px;animation:shine 2s infinite}.flap{position:absolute;width:0;height:0;border-left:150px solid transparent;border-right:150px solid transparent;border-top:100px solid #e8a9b8;transform-origin:top;transition:1s}.open .flap{transform:rotateX(180deg)}.hidden{display:none}#letter{background:#fff8ef;padding:35px;border-radius:15px;max-width:700px;width:85%;box-shadow:0 15px 40px #0003;text-align:center;animation:paper 1s}.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;width:90%;max-width:800px}.gallery img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:15px;opacity:0;animation:photo 1s forwards;cursor:pointer;box-shadow:0 10px 20px #0003}.gallery img:hover{transform:scale(1.08) rotate(3deg);filter:brightness(1.1)}.gallery-message{text-align:center;font-size:18px;animation:fade 1.5s}.btn{background:#d993a7;color:white;padding:12px 22px;border-radius:30px;text-decoration:none;display:inline-block}.btn:hover{transform:translateY(-5px)}#lightbox{display:none;position:fixed;inset:0;background:#000b;align-items:center;justify-content:center;z-index:10}#lightbox img{max-width:80%;max-height:80%}#lightbox button{font-size:50px;background:none;color:white;border:0}.sakura{position:fixed;top:-30px;animation:fall linear forwards;pointer-events:none}.heart{position:fixed;animation:heart 1s forwards}@keyframes fall{to{transform:translateY(110vh) rotate(720deg)}}@keyframes float{50%{transform:translateY(-12px)}}@keyframes shine{50%{filter:drop-shadow(0 0 15px #fff)}}@keyframes paper{from{opacity:0;transform:scale(.7) rotateX(30deg)}to{opacity:1}}@keyframes photo{to{opacity:1;transform:none}}@keyframes fade{from{opacity:0}}@keyframes heart{to{opacity:0;transform:translateY(-50px)}}@media(max-width:600px){.gallery{grid-template-columns:repeat(2,1fr)}}
+body {
+    margin: 0;
+    min-height: 100vh;
+    background-image: url('https://i.postimg.cc/nL7srLqn/51ab3dd5450248118c910d86104ffd85-1080x1920.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: Georgia, serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: #9b6070;
+    overflow-x: hidden;
+}
+
+#envelope { width: 300px; height: 190px; background: #d993a7; border-radius: 15px; text-align: center; color: white; cursor: pointer; box-shadow: 0 20px 40px #0003; position: relative; animation: float 3s infinite; }
+.seal { font-size: 40px; padding-top: 70px; animation: shine 2s infinite; }
+.flap { position: absolute; width: 0; height: 0; border-left: 150px solid transparent; border-right: 150px solid transparent; border-top: 100px solid #e8a9b8; transform-origin: top; transition: 1s; }
+.open .flap { transform: rotateX(180deg); }
+.hidden { display: none; }
+#letter { background: #fff8ef; padding: 35px; border-radius: 15px; max-width: 700px; width: 85%; box-shadow: 0 15px 40px #0003; text-align: center; animation: paper 1s; }
+.gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; width: 90%; max-width: 800px; }
+.gallery img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 15px; opacity: 0; animation: photo 1s forwards; cursor: pointer; box-shadow: 0 10px 20px #0003; }
+.gallery img:hover { transform: scale(1.08) rotate(3deg); filter: brightness(1.1); }
+.gallery-message { text-align: center; font-size: 18px; animation: fade 1.5s; }
+.btn { background: #d993a7; color: white; padding: 12px 22px; border-radius: 30px; text-decoration: none; display: inline-block; }
+.btn:hover { transform: translateY(-5px); }
+#lightbox { display: none; position: fixed; inset: 0; background: #000b; align-items: center; justify-content: center; z-index: 10; }
+#lightbox img { max-width: 80%; max-height: 80%; }
+#lightbox button { font-size: 50px; background: none; color: white; border: 0; }
+.sakura { position: fixed; top: -30px; animation: fall linear forwards; pointer-events: none; }
+.heart { position: fixed; animation: heart 1s forwards; }
+
+@keyframes fall { to { transform: translateY(110vh) rotate(720deg); } }
+@keyframes float { 50% { transform: translateY(-12px); } }
+@keyframes shine { 50% { filter: drop-shadow(0 0 15px #fff); } }
+@keyframes paper { from { opacity: 0; transform: scale(.7) rotateX(30deg); } to { opacity: 1; } }
+@keyframes photo { to { opacity: 1; transform: none; } }
+@keyframes fade { from { opacity: 0; } }
+@keyframes heart { to { opacity: 0; transform: translateY(-50px); } }
+@media (max-width: 600px) { .gallery { grid-template-columns: repeat(2, 1fr); } }
