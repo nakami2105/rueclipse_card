@@ -1,4 +1,4 @@
-<!DOCTYPEDOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -20,11 +20,19 @@
         <p>Escribe aquí tu carta de amor...</p>
     </main>
 
-    <div id="music-player" onclick="toggleMusic()">
-        <img id="disc-cover" src="TU_PORTADA.jpg" alt="Portada">
+    <!-- Reproductor oficial de Spotify -->
+    <div id="spotify">
+        <iframe 
+            style="border-radius:12px" 
+            src="https://open.spotify.com/embed/track/5r5sF35TZ66zMyPfgMn8wj?utm_source=generator" 
+            width="100%" 
+            height="152" 
+            frameBorder="0" 
+            allowfullscreen="" 
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+            loading="lazy">
+        </iframe>
     </div>
-
-    <audio id="bg-music" src="TU_CANCION.mp3" loop></audio>
 
     <script src="script.js"></script>
     <script src="sakura.js"></script>
