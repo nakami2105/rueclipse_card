@@ -1,92 +1,75 @@
-/* --- ESTILOS DEL TÍTULO ANIMADO Y CARTA --- */
-.animated-title {
-    font-size: 26px;
-    color: #9b6070;
-    margin-bottom: 25px;
-    animation: glowFloat 3s ease-in-out infinite alternate;
-    text-shadow: 0 0 10px rgba(217, 147, 167, 0.4);
-}
+// --- PASO 1: ABRIR SOBRE Y PASAR A GALERÍA ---
+function openEnvelope() {
+    const envelope = document.getElementById('envelope');
+    const gallerySection = document.getElementById('gallery-section');
 
-.letter-content {
-    text-align: justify;
-    line-height: 1.7;
-    color: #5c3d46;
-    font-size: 15px;
-    max-height: 60vh;
-    overflow-y: auto;
-    padding-right: 10px;
-}
-
-/* Personalización de la barra de desplazamiento del texto */
-.letter-content::-webkit-scrollbar {
-    width: 6px;
-}
-.letter-content::-webkit-scrollbar-thumb {
-    background: #d993a7;
-    border-radius: 10px;
-}
-
-.signature {
-    text-align: right;
-    margin-top: 25px;
-    font-style: italic;
-    line-height: 1.5;
-}
-
-/* Animación del Título (Flotante con destello) */
-@keyframes glowFloat {
-    0% {
-        transform: translateY(0);
-        text-shadow: 0 0 5px rgba(217, 147, 167, 0.3);
-    }
-    100% {
-        transform: translateY(-6px);
-        text-shadow: 0 0 15px rgba(217, 147, 167, 0.8), 0 0 25px rgba(232, 169, 184, 0.6);
+    if (envelope) {
+        envelope.classList.add('open');
+        setTimeout(() => {
+            envelope.classList.add('hidden');
+            if (gallerySection) {
+                gallerySection.classList.remove('hidden');
+            }
+        }, 1000);
     }
 }
-/* --- ESTILOS DEL TÍTULO ANIMADO Y CARTA --- */
-.animated-title {
-    font-size: 26px;
-    color: #9b6070;
-    margin-bottom: 25px;
-    animation: glowFloat 3s ease-in-out infinite alternate;
-    text-shadow: 0 0 10px rgba(217, 147, 167, 0.4);
-}
 
-.letter-content {
-    text-align: justify;
-    line-height: 1.7;
-    color: #5c3d46;
-    font-size: 15px;
-    max-height: 60vh;
-    overflow-y: auto;
-    padding-right: 10px;
-}
-
-/* Personalización de la barra de desplazamiento del texto */
-.letter-content::-webkit-scrollbar {
-    width: 6px;
-}
-.letter-content::-webkit-scrollbar-thumb {
-    background: #d993a7;
-    border-radius: 10px;
-}
-
-.signature {
-    text-align: right;
-    margin-top: 25px;
-    font-style: italic;
-    line-height: 1.5;
-}
-
-/* Animación del Título (Flotante con destello) */
-@keyframes glowFloat {
-    0% {
-        transform: translateY(0);
-        text-shadow: 0 0 5px rgba(217, 147, 167, 0.3);
+// --- NAVEGACIÓN ENTRE SECCIONES ---
+function showGallery() {
+    hideAllSections();
+    const gallerySection = document.getElementById('gallery-section');
+    if (gallerySection) {
+        gallerySection.classList.remove('hidden');
     }
-    100% {
-        transform: translateY(-6px);
-        text-shadow: 0 0 15px rgba(217, 147, 167, 0.8), 0 0 25px rgba(232, 169, 184, 0.6);
+}
+
+function showLetterText() {
+    hideAllSections();
+    const letter = document.getElementById('letter');
+    if (letter) {
+        letter.classList.remove('hidden');
+    }
+}
+
+function showEnvelope() {
+    hideAllSections();
+    const envelope = document.getElementById('envelope');
+    if (envelope) {
+        envelope.classList.remove('open');
+        envelope.classList.remove('hidden');
+    }
+}
+
+function hideAllSections() {
+    const envelope = document.getElementById('envelope');
+    const gallerySection = document.getElementById('gallery-section');
+    const letter = document.getElementById('letter');
+
+    if (envelope) envelope.classList.add('hidden');
+    if (gallerySection) gallerySection.classList.add('hidden');
+    if (letter) letter.classList.add('hidden');
+}
+
+// --- LIGHTBOX (VISOR DE FOTOS AMPLIO) ---
+function openLightbox(src) {
+    const lightbox = document.getElementById('lightbox');
+    const lightImage = document.getElementById('lightImage');
+    
+    if (lightbox && lightImage) {
+        lightImage.src = src;
+        lightbox.classList.add('active');
+    }
+}
+
+function closeLightbox(event) {
+    if (event.target.id === 'lightbox') {
+        forceCloseLightbox();
+    }
+}
+
+function forceCloseLightbox() {
+    const lightbox = document.getElementById('lightbox');
+    if (lightbox) {
+        lightbox.classList.remove('active');
     }
 }
