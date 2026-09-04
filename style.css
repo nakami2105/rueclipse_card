@@ -1,75 +1,232 @@
-// --- PASO 1: ABRIR SOBRE Y PASAR A GALERÍA ---
-function openEnvelope() {
-    const envelope = document.getElementById('envelope');
-    const gallerySection = document.getElementById('gallery-section');
-
-    if (envelope) {
-        envelope.classList.add('open');
-        setTimeout(() => {
-            envelope.classList.add('hidden');
-            if (gallerySection) {
-                gallerySection.classList.remove('hidden');
-            }
-        }, 1000);
-    }
+/* --- ESTILOS GENERALES Y FONDO --- */
+body {
+    margin: 0;
+    padding: 20px 10px;
+    min-height: 100vh;
+    background-image: url('https://i.postimg.cc/nL7srLqn/51ab3dd5450248118c910d86104ffd85-1080x1920.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: Georgia, serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: #9b6070;
+    overflow-x: hidden;
+    box-sizing: border-box;
 }
 
-// --- NAVEGACIÓN ENTRE SECCIONES ---
-function showGallery() {
-    hideAllSections();
-    const gallerySection = document.getElementById('gallery-section');
-    if (gallerySection) {
-        gallerySection.classList.remove('hidden');
-    }
+/* Ocultar elementos */
+.hidden { 
+    display: none !important; 
 }
 
-function showLetterText() {
-    hideAllSections();
-    const letter = document.getElementById('letter');
-    if (letter) {
-        letter.classList.remove('hidden');
-    }
+/* --- PASO 1: SOBRE --- */
+#envelope { 
+    width: 300px; 
+    height: 190px; 
+    background: #d993a7; 
+    border-radius: 15px; 
+    text-align: center; 
+    color: white; 
+    cursor: pointer; 
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3); 
+    position: relative; 
+    animation: float 3s infinite ease-in-out; 
+    margin: auto;
 }
 
-function showEnvelope() {
-    hideAllSections();
-    const envelope = document.getElementById('envelope');
-    if (envelope) {
-        envelope.classList.remove('open');
-        envelope.classList.remove('hidden');
-    }
+.seal { 
+    font-size: 40px; 
+    padding-top: 70px; 
+    animation: shine 2s infinite; 
 }
 
-function hideAllSections() {
-    const envelope = document.getElementById('envelope');
-    const gallerySection = document.getElementById('gallery-section');
-    const letter = document.getElementById('letter');
-
-    if (envelope) envelope.classList.add('hidden');
-    if (gallerySection) gallerySection.classList.add('hidden');
-    if (letter) letter.classList.add('hidden');
+.flap { 
+    position: absolute; 
+    width: 0; 
+    height: 0; 
+    border-left: 150px solid transparent; 
+    border-right: 150px solid transparent; 
+    border-top: 100px solid #e8a9b8; 
+    transform-origin: top; 
+    transition: 1s; 
 }
 
-// --- LIGHTBOX (VISOR DE FOTOS AMPLIO) ---
-function openLightbox(src) {
-    const lightbox = document.getElementById('lightbox');
-    const lightImage = document.getElementById('lightImage');
-    
-    if (lightbox && lightImage) {
-        lightImage.src = src;
-        lightbox.classList.add('active');
-    }
+.open .flap { 
+    transform: rotateX(180deg); 
 }
 
-function closeLightbox(event) {
-    if (event.target.id === 'lightbox') {
-        forceCloseLightbox();
-    }
+/* --- PASO 2: GALERÍA --- */
+#gallery-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
 }
 
-function forceCloseLightbox() {
-    const lightbox = document.getElementById('lightbox');
-    if (lightbox) {
-        lightbox.classList.remove('active');
-    }
+.gallery { 
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 15px; 
+    width: 90%; 
+    max-width: 800px; 
+}
+
+.gallery img { 
+    width: 100%; 
+    aspect-ratio: 1; 
+    object-fit: cover; 
+    border-radius: 15px; 
+    cursor: pointer; 
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2); 
+    transition: transform 0.2s ease;
+}
+
+.gallery img:hover { 
+    transform: scale(1.05) rotate(2deg); 
+    filter: brightness(1.1); 
+}
+
+/* --- PASO 3: CARTA DE AMOR --- */
+#letter { 
+    background: #fff8ef; 
+    padding: 35px; 
+    border-radius: 15px; 
+    max-width: 700px; 
+    width: 90%; 
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3); 
+    text-align: center; 
+    animation: paper 0.8s ease-out; 
+    box-sizing: border-box;
+}
+
+.animated-title {
+    font-size: 26px;
+    color: #9b6070;
+    margin-bottom: 25px;
+    animation: glowFloat 3s ease-in-out infinite alternate;
+    text-shadow: 0 0 10px rgba(217, 147, 167, 0.4);
+}
+
+.letter-content {
+    text-align: justify;
+    line-height: 1.7;
+    color: #5c3d46;
+    font-size: 15px;
+    max-height: 55vh;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.letter-content::-webkit-scrollbar {
+    width: 6px;
+}
+.letter-content::-webkit-scrollbar-thumb {
+    background: #d993a7;
+    border-radius: 10px;
+}
+
+.signature {
+    text-align: right;
+    margin-top: 25px;
+    font-style: italic;
+    line-height: 1.5;
+}
+
+/* --- BOTONES DE NAVEGACIÓN --- */
+.nav-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 25px;
+    flex-wrap: wrap;
+}
+
+.btn { 
+    background: #d993a7; 
+    color: white; 
+    padding: 12px 22px; 
+    border-radius: 30px; 
+    text-decoration: none; 
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 15px;
+    display: inline-block; 
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.btn:hover { 
+    transform: translateY(-3px); 
+    background: #c77f93;
+}
+
+.btn.secondary {
+    background: #b5838d;
+}
+
+.btn.secondary:hover {
+    background: #a26b75;
+}
+
+/* --- LIGHTBOX (VISOR DE FOTOS AMPLIO) --- */
+#lightbox { 
+    display: none; 
+    position: fixed; 
+    inset: 0; 
+    background: rgba(0, 0, 0, 0.85); 
+    align-items: center; 
+    justify-content: center; 
+    z-index: 2000; 
+}
+
+#lightbox.active {
+    display: flex;
+}
+
+#lightbox img { 
+    max-width: 90%; 
+    max-height: 80vh; 
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-size: 40px;
+    color: #ffffff;
+    cursor: pointer;
+    font-weight: bold;
+    user-select: none;
+    z-index: 2001;
+}
+
+/* --- REPRODUCTOR SPOTIFY --- */
+#spotify {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 320px;
+    max-width: 90vw;
+    z-index: 1000;
+}
+
+/* --- ANIMACIONES --- */
+@keyframes float { 50% { transform: translateY(-12px); } }
+@keyframes shine { 50% { filter: drop-shadow(0 0 15px #fff); } }
+@keyframes paper { from { opacity: 0; transform: scale(.8); } to { opacity: 1; transform: scale(1); } }
+@keyframes glowFloat {
+    0% { transform: translateY(0); text-shadow: 0 0 5px rgba(217, 147, 167, 0.3); }
+    100% { transform: translateY(-6px); text-shadow: 0 0 15px rgba(217, 147, 167, 0.8); }
+}
+
+/* --- VISTA MÓVIL --- */
+@media (max-width: 600px) { 
+    .gallery { grid-template-columns: repeat(2, 1fr); gap: 10px; } 
+    #spotify { position: relative; bottom: auto; right: auto; width: 100%; margin-top: 20px; }
 }
