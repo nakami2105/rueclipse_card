@@ -1,1 +1,24 @@
-function openLetter(){let e=document.getElementById('envelope');if(!e)return;e.classList.add('open');setTimeout(()=>{e.style.display='none';let l=document.getElementById('letter');l.classList.remove('hidden');typeText('Mi carta para ti...');},1000)}function typeText(t){let el=document.getElementById('typed');if(!el)return;let i=0;let a=setInterval(()=>{el.textContent+=t[i++];if(i>=t.length)clearInterval(a)},100)}function showSpotify(){document.getElementById('spotify').innerHTML='PEGA AQUI TU IFRAME DE SPOTIFY'}document.addEventListener('click',e=>{let h=document.createElement('div');h.className='heart';h.textContent='💗';h.style.left=e.clientX+'px';h.style.top=e.clientY+'px';document.body.appendChild(h);setTimeout(()=>h.remove(),1000)});let imgs=[...document.querySelectorAll('.gallery img')],box=document.getElementById('lightbox'),current=0;if(box){imgs.forEach((im,i)=>im.onclick=()=>{current=i;box.style.display='flex';box.querySelector('img').src=im.src});document.getElementById('next').onclick=()=>{current=(current+1)%imgs.length;box.querySelector('img').src=imgs[current].src};document.getElementById('prev').onclick=()=>{current=(current-1+imgs.length)%imgs.length;box.querySelector('img').src=imgs[current].src}}
+// Paso 1 -> Paso 2: Abrir el sobre y mostrar la galería
+function openEnvelope() {
+    const envelope = document.getElementById('envelope');
+    const gallerySection = document.getElementById('gallery-section');
+
+    envelope.classList.add('open');
+
+    // Esperar a que la animación de apertura del sobre termine
+    setTimeout(() => {
+        envelope.classList.add('hidden');
+        gallerySection.classList.remove('hidden');
+    }, 1000);
+}
+
+// Paso 2 -> Paso 3: Ocultar la galería y mostrar el texto de la carta
+function showLetterText() {
+    const gallerySection = document.getElementById('gallery-section');
+    const letter = document.getElementById('letter');
+
+    gallerySection.classList.add('hidden');
+    letter.classList.remove('hidden');
+
+    // Si tienes alguna animación de escritura para el título/texto, la puedes iniciar aquí
+}
